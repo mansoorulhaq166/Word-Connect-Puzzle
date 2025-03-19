@@ -21,7 +21,16 @@ The project is still in progress, and additional features and refinements are pl
 3. Run the app on an emulator or physical device.
 
 ## Play Store Link
-(*Coming Soon*) <!-- Add your Play Store link here when published -->
+[Download on Google Play](https://play.google.com/store/apps/details?id=com.wordgame.wordpuzzles)
+
+## Screenshots
+Below are some screenshots from the game:
+
+![Screenshot 1](screenshots/sc_1.png)
+![Screenshot 2](screenshots/sc_2.png)
+![Screenshot 3](screenshots/sc_3.png)
+![Screenshot 4](screenshots/sc_4.png)
+![Screenshot 5](screenshots/sc_5.png)
 
 ## Contribution
 Everyone is welcome to contribute, but please modify all resources (e.g., images, audio) before publishing on the Play Store. The original brand "LexiLink" is copyrighted and must not be used in commercial releases.
