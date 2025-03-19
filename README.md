@@ -26,11 +26,13 @@ The project is still in progress, and additional features and refinements are pl
 ## Screenshots
 Below are some screenshots from the game:
 
-![Screenshot 1](screenshots/sc_1.png)
-![Screenshot 2](screenshots/sc_2.png)
-![Screenshot 3](screenshots/sc_3.png)
-![Screenshot 4](screenshots/sc_4.png)
-![Screenshot 5](screenshots/sc_5.png)
+<p align="center">
+  <img src="screenshots/sc_1.png" width="250" />
+  <img src="screenshots/sc_2.png" width="250" />
+  <img src="screenshots/sc_3.png" width="250" />
+  <img src="screenshots/sc_4.png" width="250" />
+  <img src="screenshots/sc_5.png" width="250" />
+</p>
 
 ## Contribution
 Everyone is welcome to contribute, but please modify all resources (e.g., images, audio) before publishing on the Play Store. The original brand "LexiLink" is copyrighted and must not be used in commercial releases.
