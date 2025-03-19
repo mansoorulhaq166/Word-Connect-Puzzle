@@ -8,6 +8,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import com.wordgame.wordpuzzles.ads.AdsConfig.REWARDED_ADS
 
 @Composable
 fun LoadRewardedAd(

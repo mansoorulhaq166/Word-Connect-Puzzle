@@ -3,6 +3,7 @@ package com.wordgame.wordpuzzles.ads
 import android.app.Activity
 import android.content.Context
 import android.util.Log
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,6 +20,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback
+import com.wordgame.wordpuzzles.ads.AdsConfig.INTERSTITIAL_REWARDED_ADS
 
 @Composable
 fun LoadRewardedInterstitial(
@@ -50,7 +52,7 @@ fun LoadRewardedInterstitial(
             } else {
                 val rewardedInterstitialAd = rewardedInterstitialAdState.value
                 if (rewardedInterstitialAd != null) {
-                    val activity = LocalContext.current as Activity
+                    val activity = LocalActivity.current as Activity
                     rewardedInterstitialAd.show(activity) {
                         onAdClosed()
                         onUserEarnedReward()

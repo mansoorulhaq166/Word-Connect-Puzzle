@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -22,6 +25,25 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val localProperties = Properties()
+        val localFile = rootProject.file("local.properties")
+        if (localFile.exists()) {
+            localProperties.load(FileInputStream(localFile))
+        }
+
+        fun getLocalProperty(key: String): String {
+            return localProperties.getProperty(key, "")
+        }
+
+        // Read properties securely
+        buildConfigField("String", "ADMOB_APP_ID", "\"${getLocalProperty("ADMOB_APP_ID")}\"")
+        buildConfigField("String", "BANNER_AD_ID", "\"${getLocalProperty("BANNER_AD_ID")}\"")
+        buildConfigField("String", "REWARDED_AD_ID", "\"${getLocalProperty("REWARDED_AD_ID")}\"")
+        buildConfigField("String", "INTERSTITIAL_AD_ID", "\"${getLocalProperty("INTERSTITIAL_AD_ID")}\"")
+        buildConfigField("String", "APP_OPEN_AD_ID", "\"${getLocalProperty("APP_OPEN_AD_ID")}\"")
+
+        manifestPlaceholders["ADMOB_APP_ID"] = getLocalProperty("ADMOB_APP_ID")
     }
 
     buildTypes {
@@ -42,6 +64,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 //    composeOptions {
 //        kotlinCompilerExtensionVersion = "1.5.1"

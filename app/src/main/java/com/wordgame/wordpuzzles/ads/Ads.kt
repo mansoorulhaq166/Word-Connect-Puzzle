@@ -1,10 +1,15 @@
 package com.wordgame.wordpuzzles.ads
 
+import com.wordgame.wordpuzzles.BuildConfig
 
-const val APP_ADS_ID = "ca-app-pub-4313095758892143~8340720213"
-const val BANNER_ADS = "ca-app-pub-4313095758892143/2054513465"
-const val TEST_BANNER_ADS = "ca-app-pub-3940256099942544/6300978111"
-const val REWARDED_ADS = "ca-app-pub-4313095758892143/5730088492"
-const val TEST_REWARDED_ADS = "ca-app-pub-3940256099942544/5224354917"
-const val INTERSTITIAL_REWARDED_ADS = "ca-app-pub-4313095758892143/1632885214"
-const val APP_OPEN_ADS = "ca-app-pub-4313095758892143/7306069639"
+object AdsConfig {
+    val APP_ADS_ID = BuildConfig.ADMOB_APP_ID
+    val BANNER_ADS = BuildConfig.BANNER_AD_ID
+    val REWARDED_ADS = BuildConfig.REWARDED_AD_ID
+    val INTERSTITIAL_REWARDED_ADS = BuildConfig.INTERSTITIAL_AD_ID
+    val APP_OPEN_ADS = BuildConfig.APP_OPEN_AD_ID
+
+    // Test IDs (These are safe to keep as constants)
+    const val TEST_BANNER_ADS = "ca-app-pub-3940256099942544/6300978111"
+    const val TEST_REWARDED_ADS = "ca-app-pub-3940256099942544/5224354917"
+}
