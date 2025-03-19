@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.wordgame.wordpuzzles.R
 import com.wordgame.wordpuzzles.utils.ShowLetterState
@@ -39,7 +40,7 @@ fun MiddleBar(
     }*/
     Row(
         modifier = Modifier
-            .padding(start = 4.dp, end = 4.dp)
+            .padding(4.dp)
             .fillMaxSize(),
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.SpaceBetween
@@ -60,6 +61,7 @@ fun MiddleBar(
             }
             Badge(
                 modifier = Modifier.align(Alignment.TopEnd),
+                badgeColor = Color(0xFF2196F3),  // Blue
                 count = availableBoosts
             )
         }
@@ -77,6 +79,7 @@ fun MiddleBar(
             }
             Badge(
                 modifier = Modifier.align(Alignment.TopEnd),
+                badgeColor = Color(0xFF2196F3),
                 count = availableShow
             )
         }

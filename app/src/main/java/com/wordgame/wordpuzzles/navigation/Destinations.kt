@@ -28,7 +28,7 @@ object DestinationSettings : Destinations {
     override val route: String
         get() = "settingsscreen"
     override val icon: Int
-        get() = R.drawable.settings // Set the appropriate icon for settings
+        get() = R.drawable.icon_settings
     override val label: String
         get() = "Settings" // Set the label for settings
 }

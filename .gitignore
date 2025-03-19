@@ -22,3 +22,4 @@ google-services.json
 *.jks
 google-services.json
 app/google-services.json
+private_key.pepk

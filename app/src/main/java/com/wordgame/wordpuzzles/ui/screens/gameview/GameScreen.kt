@@ -30,27 +30,29 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.google.gson.Gson
-import com.wordgame.wordpuzzles.utils.GemShopManager
 import com.wordgame.wordpuzzles.R
+import com.wordgame.wordpuzzles.ads.LoadRewardedInterstitial
 import com.wordgame.wordpuzzles.components.AnimatedOverlay
+import com.wordgame.wordpuzzles.components.AnimatedWordConnectBackground
+import com.wordgame.wordpuzzles.components.BottomBackground
 import com.wordgame.wordpuzzles.components.BottomBar
 import com.wordgame.wordpuzzles.components.ButtonWatchAd
 import com.wordgame.wordpuzzles.components.BuyGemsDialog
+import com.wordgame.wordpuzzles.components.CongratulationDialog
 import com.wordgame.wordpuzzles.components.DialogLevelComplete
 import com.wordgame.wordpuzzles.components.GoodJob
 import com.wordgame.wordpuzzles.components.KeyPad
-import com.wordgame.wordpuzzles.ads.LoadRewardedInterstitial
-import com.wordgame.wordpuzzles.components.CongratulationDialog
 import com.wordgame.wordpuzzles.components.MiddleBar
 import com.wordgame.wordpuzzles.components.PreviewWord
 import com.wordgame.wordpuzzles.components.QuitConfirmationDialog
 import com.wordgame.wordpuzzles.components.ShowLetterPopup
 import com.wordgame.wordpuzzles.components.ShowLetterSnackBar
 import com.wordgame.wordpuzzles.components.SolutionPad
+import com.wordgame.wordpuzzles.components.SolutionPadBackground
 import com.wordgame.wordpuzzles.components.TopBar
 import com.wordgame.wordpuzzles.data.WordDetails
 import com.wordgame.wordpuzzles.navigation.DestinationMain
+import com.wordgame.wordpuzzles.utils.GemShopManager
 import com.wordgame.wordpuzzles.utils.SettingOptionsManager
 import com.wordgame.wordpuzzles.utils.ShowLetterState
 import com.wordgame.wordpuzzles.utils.SoundPlayer
@@ -235,7 +237,7 @@ fun GameScreen(navController: NavController) {
         QuitConfirmationDialog(onExitGame = {
             exited = true
             showDialog = false
-            navController.navigate(DestinationMain.route)
+            navController.popBackStack()
         }, onCancel = {
             showDialog = false
         })
@@ -243,16 +245,10 @@ fun GameScreen(navController: NavController) {
     Box(
         modifier = Modifier.fillMaxSize(),
     ) {
-        Image(
-            modifier = Modifier.fillMaxSize(),
-            painter = painterResource(id = R.drawable.main_bg),
-            contentDescription = "Background",
-            contentScale = ContentScale.FillBounds
-        )
+        AnimatedWordConnectBackground()
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
-
             //Upper
             Box(
                 modifier = Modifier
@@ -278,13 +274,7 @@ fun GameScreen(navController: NavController) {
                             .weight(1f),
                         contentAlignment = Alignment.Center
                     ) {
-                        Image(
-                            modifier = Modifier.fillMaxSize(),
-                            painter = painterResource(id = R.drawable.gameview_solutionpad),
-                            contentDescription = "Solution Pad",
-                            contentScale = ContentScale.FillBounds
-                        )
-                        //Solution pad goes here
+                        SolutionPadBackground()
                         if (dataprepared) {
                             val solutionsList = viewModel.mListSolutions
                             SolutionPad(
@@ -302,13 +292,7 @@ fun GameScreen(navController: NavController) {
                     .fillMaxSize()
                     .weight(1f),
             ) {
-                Image(
-                    modifier = Modifier.fillMaxSize(),
-                    painter = painterResource(id = R.drawable.fabric),
-                    contentDescription = "Fabric",
-                    contentScale = ContentScale.FillBounds
-                )
-
+                BottomBackground()
                 Column(
                     modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center
                 ) {
@@ -636,7 +620,8 @@ fun GameScreen(navController: NavController) {
         if (loadRewardedInterstitial) {
             val currentChapterId = viewModel.mChapter?.id
             if (currentChapterId != previousChapterId) {
-                LoadRewardedInterstitial(onAdClosed = {},
+                LoadRewardedInterstitial(
+                    onAdClosed = {},
                     onUserEarnedReward = {
                         showCongratulationDialog = true
                         mGems = GemShopManager.getGemsTotal()
@@ -667,14 +652,15 @@ fun GameScreen(navController: NavController) {
 
 @Composable
 fun createLevelSolutionCompleted(viewModel: GameScreenViewModel): List<WordDetails> {
-    val completedWords = viewModel.mListSolutions.filter { solution -> solution.iscompleted }.map { solution ->
-        val word = solution.letters.joinToString("") { letter ->
-            letter.label
+    val completedWords =
+        viewModel.mListSolutions.filter { solution -> solution.iscompleted }.map { solution ->
+            val word = solution.letters.joinToString("") { letter ->
+                letter.label
+            }
+            val details = solution.details
+            Log.d(TAG, "GameScreen: ${WordDetails(word, details)}")
+            WordDetails(word, details)
         }
-        val details = solution.details
-        Log.d(TAG, "GameScreen: ${WordDetails(word, details)}")
-        WordDetails(word, details)
-    }
     UserDataManager.setCompletedWords(completedWords.map { it.word })
     return completedWords
 }

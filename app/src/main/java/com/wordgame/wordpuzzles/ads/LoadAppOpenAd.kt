@@ -82,7 +82,6 @@ class AppOpenAdManager(application: Application, private val adUnit: String) : A
                 override fun onAdFailedToLoad(loadAdError: LoadAdError) {
                     isLoadingAd = false
                     Log.d("AppOpen", "onAdFailedToLoad: " + loadAdError.message)
-                    //Toast.makeText(context, "onAdFailedToLoad", Toast.LENGTH_SHORT).show()
                 }
             }
         )

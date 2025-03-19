@@ -103,7 +103,7 @@ fun BuyGemsDialog(
         ) {
             Image(
                 modifier = Modifier.fillMaxSize(),
-                painter = painterResource(id = R.drawable.dialog_backgroung),
+                painter = painterResource(id = R.drawable.dialog_background),
                 contentDescription = "Background",
                 contentScale = ContentScale.FillBounds
             )
