@@ -15,7 +15,7 @@ import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryPurchasesParams
 import com.google.common.collect.ImmutableList
 import com.wordgame.wordpuzzles.ads.AdPrefs
-import com.wordgame.wordpuzzles.utils.GemShopManager
+import com.wordgame.wordpuzzles.core.utils.GemShopManager
 import javax.inject.Inject
 
 class BillingRepository @Inject constructor(private val context: Context) :
